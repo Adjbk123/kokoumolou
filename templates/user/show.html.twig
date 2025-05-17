@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualiser l'utilisateur{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Visualiser l'utilisateur{% endblock %}
+{% block title2 %}Utilisateurs{% endblock %}
+{% block title3 %}Voir{% endblock %}
+{% block body %}
+
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Date d'Ajout</th>
+                <td>{{ user.dateAjout ? user.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="d-flex mt-3">
+    <div class=" me-3">
+        <a class="btn-primary btn" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+    </div>
+    <div class="">    {{ include('user/_delete_form.html.twig') }}</div>
+
+</div>
+
+
+
+{% endblock %}

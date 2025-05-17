@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes des années universitaires{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des Années universitaires{% endblock %}
+{% block title2 %}Années universitaires{% endblock %}
+{% block title3 %}Liste{% endblock %}
+
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+
+    <thead class="table-secondary">
+            <tr>
+                <th>#</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annee_universitaire in annee_universitaires %}
+            <tr>
+                <td>{{ annee_universitaire.id }}</td>
+                <td>{{ annee_universitaire.libelle }}</td>
+                <td>{{ annee_universitaire.description }}</td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary" href="{{ path('app_annee_universitaire_show', {'id': annee_universitaire.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary" href="{{ path('app_annee_universitaire_edit', {'id': annee_universitaire.id}) }}"><i class="fa fa-pen-to-square"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+{% block datatables %}{% endblock %}

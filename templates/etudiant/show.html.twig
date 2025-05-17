@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualiser un Etudiant{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Voir l'étudiant{% endblock %}
+{% block title2 %}Etudiant{% endblock %}
+{% block title3 %}Voir{% endblock %}
+
+{% block body %}
+
+
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ etudiant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ etudiant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenoms</th>
+                <td>{{ etudiant.prenoms }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ etudiant.dateNaissance ? etudiant.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LieuNaissance</th>
+                <td>{{ etudiant.lieuNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ etudiant.sexe }}</td>
+            </tr>
+            <tr>
+                <th>ContactParent</th>
+                <td>{{ etudiant.contactParent }}</td>
+            </tr>
+            <tr>
+                <th>AnneeObtentionBac</th>
+                <td>{{ etudiant.anneeObtentionBac }}</td>
+            </tr>
+            <tr>
+                <th>Maison</th>
+                <td>{{ etudiant.maison }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ etudiant.contact }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="mt-3 d-flex">
+        <div class="me-2">
+            <a class="btn btn-primary" href="{{ path('app_etudiant_edit', {'id': etudiant.id}) }}">Modifier</a>
+
+        </div>
+
+        <div>
+            {{ include('etudiant/_delete_form.html.twig') }}
+
+        </div>
+    </div>
+
+
+{% endblock %}

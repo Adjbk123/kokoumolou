@@ -1,0 +1,120 @@
+{{ form_start(form) }}
+
+<div class="row mb-3">
+    <div class="col-md-6 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.nom) }}
+            {{ form_label(form.nom) }}
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating">
+            {{ form_widget(form.prenoms) }}
+            {{ form_label(form.prenoms) }}
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.dateNaissance) }}
+            {{ form_label(form.dateNaissance) }}
+        </div>
+
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.lieuNaissance) }}
+            {{ form_label(form.lieuNaissance) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-floating">
+            {{ form_widget(form.sexe) }}
+            {{ form_label(form.sexe) }}
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.village) }}
+            {{ form_label(form.village) }}
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating">
+            {{ form_widget(form.maison) }}
+            {{ form_label(form.maison) }}
+        </div>
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.contact) }}
+            {{ form_label(form.contact) }}
+        </div>
+
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.contactParent) }}
+            {{ form_label(form.contactParent) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-floating">
+            {{ form_widget(form.serie) }}
+            {{ form_label(form.serie) }}
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.anneeObtentionBac) }}
+            {{ form_label(form.anneeObtentionBac) }}
+        </div>
+
+    </div>
+    <div class="col-md-6 ">
+        <div class="form-floating">
+            {{ form_widget(form.anneeUniversitaire) }}
+            {{ form_label(form.anneeUniversitaire) }}
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.categorieUniversite) }}
+            {{ form_label(form.categorieUniversite) }}
+        </div>
+
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="form-floating">
+            {{ form_widget(form.university) }}
+            {{ form_label(form.university) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-floating">
+            {{ form_widget(form.fil) }}
+            {{ form_label(form.fil) }}
+        </div>
+    </div>
+</div>
+<div class="col-12">
+    <button class="btn btn-primary w-100 py-3">{{ button_label|default('Valider') }}</button>
+
+</div>
+{{ form_end(form) }}

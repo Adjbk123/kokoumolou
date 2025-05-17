@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la filière{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Modifier la filière{% endblock %}
+{% block title2 %}Filière{% endblock %}
+{% block title3 %}Modification{% endblock %}
+
+{% block body %}
+    {{ include('filiere/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+
+{% endblock %}

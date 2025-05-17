@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le village{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Modifier le village{% endblock %}
+{% block title2 %}Village{% endblock %}
+{% block title3 %}Modification{% endblock %}
+
+
+{% block body %}
+
+    {{ include('village/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

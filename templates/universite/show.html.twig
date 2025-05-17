@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualiser l'université{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Voir l'université{% endblock %}
+{% block title2 %}Université{% endblock %}
+{% block title3 %}Voir{% endblock %}
+
+
+{% block body %}
+
+
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ universite.id }}</td>
+            </tr>
+            <tr>
+                <th>Sigle</th>
+                <td>{{ universite.sigle }}</td>
+            </tr>
+            <tr>
+                <th>RaisonSociale</th>
+                <td>{{ universite.raisonSociale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="d-flex mt-3">
+    <div class="me-3">
+        <a href="{{ path('app_universite_edit', {'id': universite.id}) }}">Modifier</a>
+
+    </div>
+    <div>
+        {{ include('universite/_delete_form.html.twig') }}
+    </div>
+</div>
+
+
+{% endblock %}

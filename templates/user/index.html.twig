@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des utilisateurs{% endblock %}
+{% block title2 %}Utilisateurs{% endblock %}
+{% block title3 %}Liste{% endblock %}
+
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Date Ajout</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% if user.roles ==["ROLE_ADMIN","ROLE_USER"] %} Administrateur {% elseif user.roles ==["ROLE_SUP_VILLAGE","ROLE_USER"]  %}  Superviseur  <b> {{ user.village.libelle }} </b> {% endif%} </td>
+
+                <td>{{ user.dateAjout ? user.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary rounded-pill" title="Voir" href="{{ path('app_user_show', {'id': user.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary rounded-pill" title="Editer" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="mdi mdi-pencil-box"></i></a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block datatables %}{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil - UNEDAK</title>
+    <link rel="shortcut icon" href="{{ asset('icon.png')}} ">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .bg {
+            background-image: url("https://unedi.info/wp-content/uploads/2024/07/bg-image.png");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .content {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .logo {
+            max-width: 200px; /* Ajuste cette valeur selon la taille de ton logo */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="content">
+        <div class="container">
+            <img src="{{ asset('assets1/logo.png') }}" alt="Logo" class="logo">
+            <h1>Bienvenue sur la plateforme d'inscription des étudiants de l'UNEDAK</h1>
+            <p>Cette plateforme permet de recueillir les informations des étudiants de l'arrondissement pour une meilleure gestion et suivi.</p>
+            <a href="{{ path('app_inscription_index') }}" class="btn btn-light mt-3 btn-lg ">Je m'enregistre !</a>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

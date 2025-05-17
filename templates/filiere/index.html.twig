@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des filières {% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des filières{% endblock %}
+{% block title2 %}Filière{% endblock %}
+{% block title3 %}Liste{% endblock %}
+
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+
+    <thead>
+            <tr>
+                <th>#</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filiere in filieres %}
+            <tr>
+                <td>{{ filiere.id }}</td>
+                <td>{{ filiere.libelle }}</td>
+                <td>{% if filiere.description ==NULL %}
+                        ---
+                    {% else %} {{ filiere.description }} {% endif %} </td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary rounded-pill" title="Voir" href="{{ path('app_filiere_show', {'id': filiere.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary rounded-pill" title="Editer" href="{{ path('app_filiere_edit', {'id': filiere.id}) }}"><i class="mdi mdi-pencil-box"></i></a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+    {% block datatables  %}  {% endblock %}
+
+

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier l'Année Universitaire{% endblock %}
+{% block breadcrumb %}  {% endblock %}
+{% block title1 %}Modifier l'année universitaire{% endblock %}
+{% block title2 %}Années universitaires{% endblock %}
+{% block title3 %}Modification{% endblock %}
+
+{% block body %}
+
+
+        {{ include('annee_universitaire/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

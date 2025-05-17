@@ -1,0 +1,254 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Tableau de bord{% endblock %}
+{% block title2 %}Main{% endblock %}
+{% block title3 %}Statistique{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <a href="{{ path('app_etudiant_index') }}" class="text-decoration-none">
+                <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <i class="fa fa-user-graduate fa-3x me-3"></i>
+                            <div>
+                                <h3 class="mb-0">{{ nbEtudiant }}</h3>
+                                <p class="mb-0">Étudiants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <a href="{{ path('app_filiere_index') }}" class="text-decoration-none">
+                <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <i class="fa fa-book fa-3x me-3"></i>
+                            <div>
+                                <h3 class="mb-0">{{ nbUser }}</h3>
+                                <p class="mb-0">Comptes utilisateurs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+
+        <div class="col-md-6">
+            <a href="{{ path('app_village_index') }}" class="text-decoration-none">
+                <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <i class="fa fa-city fa-3x me-3"></i>
+                            <div>
+                                <h3 class="mb-0">{{ nbVillage }}</h3>
+                                <p class="mb-0">Villages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{{ path('app_serie_index') }}" class="text-decoration-none">
+                <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <i class="fa fa-list-alt fa-3x me-3"></i>
+                            <div>
+                                <h3 class="mb-0">{{ nbSerie }}</h3>
+                                <p class="mb-0">Séries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <div class="row mt-3">
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2>Étudiants par Village</h2>
+                    <canvas id="etudiantsParVillageChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2>Étudiants par Sexe</h2>
+                    <canvas id="etudiantsParSexeChart"></canvas>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row mt-3">
+
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2>Étudiants par série</h2>
+                    <canvas id="etudiantsParSerieChart" ></canvas>
+                </div>
+            </div>
+        </div>
+            </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var villageLabels = {{ villageLabels|raw }};
+            var etudiantsParVillage = {{ etudiantsParVillage|json_encode|raw }};
+            var sexeLabels = ["Masculin", "Féminin"];
+            var etudiantsParSexe = {{ etudiantsParSexe|json_encode|raw }};
+            var serieLabels = {{ serieLabels|raw }};
+            var etudiantsParSerie = {{ etudiantsParSerie|json_encode|raw }};
+            var filiereLabels = {{ filiereLabels|raw }};
+            var etudiantsParFiliere = {{ etudiantsParFiliere|json_encode|raw }};
+
+            // Étudiants par Village
+            var ctxVillage = document.getElementById('etudiantsParVillageChart').getContext('2d');
+            new Chart(ctxVillage, {
+                type: 'bar',
+                data: {
+                    labels: villageLabels,
+                    datasets: [{
+                        label: 'Nombre d\'étudiants',
+                        data: Object.values(etudiantsParVillage),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Étudiants par Sexe
+            var ctxSexe = document.getElementById('etudiantsParSexeChart').getContext('2d');
+            new Chart(ctxSexe, {
+                type: 'bar',
+                data: {
+                    labels: sexeLabels,
+                    datasets: [{
+                        label: 'Nombre d\'étudiants',
+                        data: Object.values(etudiantsParSexe),
+                        backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Étudiants par Série
+            var ctxSerie = document.getElementById('etudiantsParSerieChart').getContext('2d');
+            new Chart(ctxSerie, {
+                type: 'bar',
+                data: {
+                    labels: serieLabels,
+                    datasets: [{
+                        label: 'Nombre d\'étudiants',
+                        data: Object.values(etudiantsParSerie),
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Étudiants par Filière
+            var ctxFiliere = document.getElementById('etudiantsParFiliereChart').getContext('2d');
+            new Chart(ctxFiliere, {
+                type: 'pie',
+                data: {
+                    labels: filiereLabels,
+                    datasets: [{
+                        label: 'Nombre d\'étudiants',
+                        data: Object.values(etudiantsParFiliere),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

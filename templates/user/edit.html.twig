@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Ajouter un utilisateur{% endblock %}
+{% block title2 %}Utilisateur{% endblock %}
+{% block title3 %}Modification{% endblock %}
+{% block body %}
+
+    {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

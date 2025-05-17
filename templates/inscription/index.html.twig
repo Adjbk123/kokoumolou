@@ -1,0 +1,27 @@
+{% extends 'baseSite.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+{% block breadcrumb %}Formulaire d'inscription des étudiant(e)s{% endblock %}
+{% block breadcrumb1 %}Inscription{% endblock %}
+{% block breadcrumb2 %}Inscription{% endblock %}
+
+{% block body %}
+
+
+    <div class="container-xxl py-5 category">
+        <div class="container">
+
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            <div class="row g-3">
+                {{ include('etudiant/_formIns.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+{% endblock %}

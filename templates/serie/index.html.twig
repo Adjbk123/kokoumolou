@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Séries{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des Séries{% endblock %}
+{% block title2 %}Série{% endblock %}
+{% block title3 %}Liste{% endblock %}
+
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+
+    <thead class="table-secondary">
+            <tr>
+                <th>#</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for serie in series %}
+            <tr>
+                <td>{{ serie.id }}</td>
+                <td>{{ serie.libelle }}</td>
+                <td>{% if serie.description ==NULL %}
+            ---
+        {% else %} {{ serie.description }}  {% endif %} </td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary rounded-pill" title="Voir" href="{{ path('app_serie_show', {'id': serie.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary rounded-pill" title="Editer" href="{{ path('app_serie_edit', {'id': serie.id}) }}"><i class="mdi mdi-pencil-box"></i></a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+{% block datatables %}{% endblock %}

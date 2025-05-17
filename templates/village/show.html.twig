@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualiser le village{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Voir le village{% endblock %}
+{% block title2 %}Village{% endblock %}
+{% block title3 %}Voir{% endblock %}
+{% block body %}
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ village.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ village.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ village.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex mt-3">
+        <div class="me-3">
+
+            <a class="btn btn-primary" href="{{ path('app_village_edit', {'id': village.id}) }}">Modifier</a>
+        </div>
+        <div>
+            {{ include('village/_delete_form.html.twig') }}
+
+        </div>
+    </div>
+
+
+{% endblock %}

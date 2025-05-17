@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la catégorie{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Modifier la catégorie{% endblock %}
+{% block title2 %}Catégorie d'université{% endblock %}
+{% block title3 %}Modification{% endblock %}
+
+{% block body %}
+    <h1>Edit CategorieUniversite</h1>
+
+    {{ include('categorie_universite/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+
+{% endblock %}

@@ -1,0 +1,277 @@
+<nav id="sidebar" aria-label="Main Navigation">
+    <!-- Side Header -->
+    <div class="bg-header-dark">
+        <div class="content-header bg-white-5">
+            <!-- Logo -->
+            <a class="fw-semibold text-white tracking-wide" href="{{ path('app_admin') }}">
+              <span class="smini-visible">
+                D<span class="opacity-75">x</span>
+              </span>
+                <span class="smini-hidden">
+                Digit<span class="opacity-75"> Student</span>
+              </span>
+            </a>
+            <!-- END Logo -->
+
+            <!-- Options -->
+            <div>
+                <!-- Toggle Sidebar Style -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <!-- Class Toggle, functionality initialized in Helpers.dmToggleClass() -->
+                <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#sidebar-style-toggler" data-class="fa-toggle-off fa-toggle-on" onclick="Dashmix.layout('sidebar_style_toggle');Dashmix.layout('header_style_toggle');">
+                    <i class="fa fa-toggle-off" id="sidebar-style-toggler"></i>
+                </button>
+                <!-- END Toggle Sidebar Style -->
+
+                <!-- Dark Mode -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#dark-mode-toggler" data-class="far fa" onclick="Dashmix.layout('dark_mode_toggle');">
+                    <i class="far fa-moon" id="dark-mode-toggler"></i>
+                </button>
+                <!-- END Dark Mode -->
+
+                <!-- Close Sidebar, Visible only on mobile screens -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout" data-action="sidebar_close">
+                    <i class="fa fa-times-circle"></i>
+                </button>
+                <!-- END Close Sidebar -->
+            </div>
+            <!-- END Options -->
+        </div>
+    </div>
+    <!-- END Side Header -->
+
+    <!-- Sidebar Scrolling -->
+    <div class="js-sidebar-scroll">
+        <!-- Side Navigation -->
+        <div class="content-side">
+            <ul class="nav-main">
+                <li class="nav-main-item">
+                    <a class="nav-main-link active" href="{{ path('app_admin') }}">
+                        <i class="nav-main-link-icon fa fa-home"></i>
+                        <span class="nav-main-link-name">Tableau de bord</span>
+{#                        <span class="nav-main-link-badge badge rounded-pill bg-primary">main</span>#}
+                    </a>
+                </li>
+                {% if is_granted('ROLE_SUP_VILLAGE') %}
+                <li class="nav-main-item {% if app.current_route == 'app_etudiant_new' or app.current_route == 'app_filiere_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-user-graduate"></i>
+                        <span class="nav-main-link-name">Etudiants</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_etudiant_new' %}active  {% endif %}" href="{{ path('app_etudiant_new') }}">
+                                <span class="nav-main-link-name">Inscrire</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_etudiant_village' %}active  {% endif %} " href="{{ path('app_etudiant_village') }}">
+                                <span class="nav-main-link-name">Listes des étudiants</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+
+                <li class="nav-main-item {% if app.current_route == 'app_etudiant_new' or app.current_route == 'app_filiere_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-user-graduate"></i>
+                        <span class="nav-main-link-name">Etudiants</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_etudiant_new' %}active  {% endif %}" href="{{ path('app_etudiant_new') }}">
+                                <span class="nav-main-link-name">Inscrire</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_etudiant_index' %}active  {% endif %} " href="{{ path('app_etudiant_index') }}">
+                                <span class="nav-main-link-name">Listes des étudiants</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-heading">Paramètres</li>
+
+                <li class="nav-main-item {% if app.current_route == 'app_filiere_new' or app.current_route == 'app_filiere_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-book"></i>
+                        <span class="nav-main-link-name">Filières</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_filiere_new' %}active  {% endif %}" href="{{ path('app_filiere_new') }}">
+                                <span class="nav-main-link-name">Ajouter</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_filiere_index' %}active  {% endif %} " href="{{ path('app_filiere_index') }}">
+                                <span class="nav-main-link-name">Listes des filières</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item {% if app.current_route == 'app_serie_new' or app.current_route == 'app_serie_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-school-flag"></i>
+                        <span class="nav-main-link-name">Série</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_serie_new' %}active  {% endif %}" href="{{ path('app_serie_new') }}">
+                                <span class="nav-main-link-name">Ajouter</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_serie_index' %}active  {% endif %} " href="{{ path('app_serie_index') }}">
+                                <span class="nav-main-link-name">Listes des séries</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-main-item  {% if app.current_route == 'app_village_new' or app.current_route == 'app_village_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-city"></i>
+                        <span class="nav-main-link-name">Village</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item ">
+                            <a class="nav-main-link  {% if app.current_route == 'app_village_new' %}active  {% endif %}" href="{{ path('app_village_new') }}">
+                                <span class="nav-main-link-name">Ajouter </span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_village_index' %}active  {% endif %}" href="{{ path('app_village_index') }}">
+                                <span class="nav-main-link-name">Listes des villages</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-main-heading">Paramètres universitaire</li>
+                <li class="nav-main-item  {% if app.current_route == 'app_universite_new' or app.current_route == 'app_universite_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-school"></i>
+                        <span class="nav-main-link-name">Université</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_universite_new' %}active  {% endif %}" href="{{ path('app_universite_new') }}">
+                                <span class="nav-main-link-name">Ajouter</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_universite_index' %}active  {% endif %}" href="{{ path('app_universite_index') }}">
+                                <span class="nav-main-link-name">Listes des catégories </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-main-item  {% if app.current_route == 'app_annee_universitaire_new' or app.current_route == 'app_annee_universitaire_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-school-circle-check"></i>
+                        <span class="nav-main-link-name">Année Universitaire</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_annee_universitaire_new' %}active  {% endif %}" href="{{ path('app_annee_universitaire_new') }}">
+                                <span class="nav-main-link-name">Ajouter</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_annee_universitaire_index' %}active  {% endif %}" href="{{ path('app_annee_universitaire_index') }}">
+                                <span class="nav-main-link-name">Listes des années universitaires </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-main-item  {% if app.current_route == 'app_categorie_universite_new' or app.current_route == 'app_categorie_universite_index'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-school-circle-xmark"></i>
+                        <span class="nav-main-link-name">Catégorie Université</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_categorie_universite_new' %}active  {% endif %}" href="{{ path('app_categorie_universite_new') }}">
+                                <span class="nav-main-link-name">Ajouter</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_categorie_universite_index' %}active  {% endif %}" href="{{ path('app_categorie_universite_index') }}">
+                                <span class="nav-main-link-name">Listes des catégories </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+
+                <li class="nav-main-heading">Administration</li>
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-user-group"></i>
+                        <span class="nav-main-link-name">Membres</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="#">
+                                <span class="nav-main-link-name">Ajouter </span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="#">
+                                <span class="nav-main-link-name">Listes des membres</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-main-item {% if app.current_route == 'app_user_new' or app.current_route == 'app_user_index' or app.current_route == 'app_user_village'  %}open  {% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-user-circle"></i>
+                        <span class="nav-main-link-name">Utilisateurs</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_user_new' %}active  {% endif %}" href="{{ path('app_user_new') }}">
+                                <span class="nav-main-link-name">Ajouter un administrateur</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_user_village' %}active  {% endif %}" href="{{ path('app_user_village') }}">
+                                <span class="nav-main-link-name">Ajouter un Superviseur de village</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {% if app.current_route == 'app_user_index' %}active  {% endif %}" href="{{ path('app_user_index') }}">
+                                <span class="nav-main-link-name">Listes des utilisateurs</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                {% endif %}
+
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link " href="{{ path('app_logout') }}">
+                        <i class="nav-main-link-icon fa fa-sign-out"></i>
+                        <span class="nav-main-link-name">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END Side Navigation -->
+    </div>
+    <!-- END Sidebar Scrolling -->
+</nav>

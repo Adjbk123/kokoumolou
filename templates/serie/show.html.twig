@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualiser la série{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des séries{% endblock %}
+{% block title2 %}Série{% endblock %}
+{% block title3 %}Voir{% endblock %}
+
+{% block body %}
+
+
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ serie.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ serie.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ serie.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+<div class="d-flex mt-3">
+    <div class="me-3">
+
+        <a class="btn btn-primary" href="{{ path('app_serie_edit', {'id': serie.id}) }}">Modifier</a>
+    </div>
+    <div>
+        {{ include('serie/_delete_form.html.twig') }}
+    </div>
+</div>
+
+
+
+{% endblock %}

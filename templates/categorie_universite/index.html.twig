@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategorieUniversite index{% endblock %}
+
+
+{% block title1 %}Liste des catégories{% endblock %}
+{% block title2 %}Catégorie d'université{% endblock %}
+{% block title3 %}Liste{% endblock %}
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+
+    <thead>
+            <tr>
+                <th>#</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_universite in categorie_universites %}
+            <tr>
+                <td>{{ categorie_universite.id }}</td>
+                <td>{{ categorie_universite.libelle }}</td>
+                <td>{% if categorie_universite.description == NULL %}
+                        ---
+                    {% else %} {{ categorie_universite.description }} {% endif %}</td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary rounded-pill" title="Voir" href="{{ path('app_categorie_universite_show', {'id': categorie_universite.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary rounded-pill" title="Editer" href="{{ path('app_categorie_universite_edit', {'id': categorie_universite.id}) }}"><i class="mdi mdi-pencil-box"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block datatables %}{% endblock %}

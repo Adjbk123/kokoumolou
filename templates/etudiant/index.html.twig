@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des étudiants inscrits{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+{% block title1 %}Liste des étudiants{% endblock %}
+{% block title2 %}Etudiant{% endblock %}
+{% block title3 %}Liste{% endblock %}
+
+{% block body %}
+    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
+        <thead class="table-secondary">
+        <tr>
+            <th>#</th>
+            <th>Nom & Prénoms</th>
+            <th>Date Naissance</th>
+            <th>Lieu Naissance</th>
+            <th>Sexe</th>
+            <th>Contact Parent</th>
+            <th>Annee d'Obtention du Bac</th>
+            <th>Série</th>
+            <th>Université</th>
+            <th>Filière</th>
+            <th>Catégorie université</th>
+            <th>Maison </th>
+            <th>Contact </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td>{{ etudiant.id }}</td>
+                <td>{{ etudiant.nom }} {{ etudiant.prenoms }}</td>
+                <td>{{ etudiant.dateNaissance ? etudiant.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ etudiant.lieuNaissance }}</td>
+                <td>{{ etudiant.sexe }}</td>
+                <td>{{ etudiant.contactParent }}</td>
+                <td>{{ etudiant.anneeObtentionBac }}</td>
+                <td>{{ etudiant.serie.libelle }}</td>
+                <td>{{ etudiant.university }}</td>
+                <td>{{ etudiant.fil }}</td>
+                <td>{{ etudiant.categorieUniversite.libelle }}</td>
+                <td>{{ etudiant.maison }}</td>
+                <td>{{ etudiant.contact }}</td>
+                <td>
+                    <a  class="btn btn-sm btn-secondary rounded-pill" title="Voir" href="{{ path('app_etudiant_show', {'id': etudiant.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a  class="btn btn-sm btn-primary rounded-pill" title="Editer" href="{{ path('app_etudiant_edit', {'id': etudiant.id}) }}"><i class="mdi mdi-pencil-box"></i></a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block datatables %}{% endblock %}
